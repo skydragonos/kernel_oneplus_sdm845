@@ -173,6 +173,8 @@ struct fp_underscreen_info {
 #define KEY_GESTURE_SWIPE_UP        KEY_F8
 #endif
 
+
+
 #define BIT0 (0x1 << 0)
 #define BIT1 (0x1 << 1)
 #define BIT2 (0x1 << 2)
@@ -1505,7 +1507,6 @@ static void gesture_judge(struct synaptics_ts_data *ts)
 			break;
 		}
 
-#ifdef VENDOR_EDIT_OXYGEN
 	keyCode = UnkownGestrue;
 	// Get key code based on registered gesture.
 	switch (gesture) {
@@ -1554,7 +1555,6 @@ static void gesture_judge(struct synaptics_ts_data *ts)
 		default:
 			break;
 	}
-#endif
 
 	TPD_ERR("detect %s gesture\n", gesture == DouTap ? "(double tap)" :
 			gesture == UpVee ? "(V)" :
@@ -3667,7 +3667,6 @@ static int	synaptics_input_init(struct synaptics_ts_data *ts)
 	set_bit(BTN_TOOL_FINGER, ts->input_dev->keybit);
 #ifdef SUPPORT_GESTURE
 	set_bit(KEY_F4 , ts->input_dev->keybit);//doulbe-tap resume
-#ifdef VENDOR_EDIT_OXYGEN
 	set_bit(KEY_DOUBLE_TAP, ts->input_dev->keybit);
 	set_bit(KEY_GESTURE_CIRCLE, ts->input_dev->keybit);
 	set_bit(KEY_GESTURE_V, ts->input_dev->keybit);
@@ -3685,7 +3684,6 @@ static int	synaptics_input_init(struct synaptics_ts_data *ts)
 #endif
 	set_bit(KEY_APPSELECT, ts->input_dev->keybit);
 	set_bit(KEY_BACK, ts->input_dev->keybit);
-#endif
 	/* For multi touch */
 	input_set_abs_params(ts->input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
 	input_set_abs_params(ts->input_dev, ABS_MT_TOUCH_MINOR, 0,255, 0, 0);
