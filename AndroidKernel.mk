@@ -1,3 +1,4 @@
+ifeq ($(TARGET_DEVICE),$(filter $(TARGET_DEVICE),oneplus6 oneplus6t)) 
 #Android makefile to build kernel as a part of Android Build
 PERL		= perl
 
@@ -171,5 +172,6 @@ kernelconfig: $(KERNEL_OUT) $(KERNEL_CONFIG)
 	     $(MAKE) -C $(TARGET_KERNEL_SOURCE) O=$(BUILD_ROOT_LOC)$(KERNEL_OUT) $(KERNEL_MAKE_ENV) ARCH=$(KERNEL_ARCH) CROSS_COMPILE=$(KERNEL_CROSS_COMPILE) savedefconfig
 	cp $(KERNEL_OUT)/defconfig $(TARGET_KERNEL_SOURCE)/arch/$(KERNEL_ARCH)/configs/$(KERNEL_DEFCONFIG)
 
+endif
 endif
 endif
